@@ -1,0 +1,181 @@
+{
+  "name": "throughput_by_scale",
+  "created_at": "2026-09-27T00:19:44+00:00",
+  "git_sha": "c0e144f",
+  "machine": {
+    "os": "Windows 11",
+    "python": "3.11.15",
+    "cpu": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "cores_physical": 6,
+    "cores_logical": 12,
+    "cpu_max_mhz": 2688,
+    "ram_gb": 23.8
+  },
+  "notes": "Parquet + zstd to local disk, default chunk_size=500k, clean data.",
+  "cases": [
+    {
+      "label": "scale 0.1",
+      "params": {
+        "scale": 0.1,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 500000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 2000,
+        "n_products": 1923,
+        "n_orders": 10000
+      },
+      "runs": 3,
+      "wall_s": [
+        0.052563800010830164,
+        0.04866039997432381,
+        0.05395129998214543
+      ],
+      "peak_rss_mb": [
+        94.78515625,
+        96.2421875,
+        96.96484375
+      ],
+      "extra": {
+        "rows": 40867,
+        "bytes": 714482,
+        "rows_per_s": 777474.231154898
+      },
+      "median_s": 0.052563800010830164,
+      "min_s": 0.04866039997432381,
+      "max_s": 0.05395129998214543,
+      "stdev_s": 0.0027433346772424154,
+      "median_peak_rss_mb": 96.2421875
+    },
+    {
+      "label": "scale 1",
+      "params": {
+        "scale": 1,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 500000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 20000,
+        "n_products": 5000,
+        "n_orders": 100000
+      },
+      "runs": 3,
+      "wall_s": [
+        0.38301389990374446,
+        0.8931598000926897,
+        0.9685805999906734
+      ],
+      "peak_rss_mb": [
+        180.8671875,
+        172.5546875,
+        170.640625
+      ],
+      "extra": {
+        "rows": 394351,
+        "bytes": 6724205,
+        "rows_per_s": 441523.45409978746
+      },
+      "median_s": 0.8931598000926897,
+      "min_s": 0.38301389990374446,
+      "max_s": 0.9685805999906734,
+      "stdev_s": 0.31854499859714647,
+      "median_peak_rss_mb": 172.5546875
+    },
+    {
+      "label": "scale 10",
+      "params": {
+        "scale": 10,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 500000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 200000,
+        "n_products": 14730,
+        "n_orders": 1000000
+      },
+      "runs": 3,
+      "wall_s": [
+        4.17684589989949,
+        3.4671878000954166,
+        4.0585023999447
+      ],
+      "peak_rss_mb": [
+        495.76953125,
+        475.7109375,
+        501.265625
+      ],
+      "extra": {
+        "rows": 3915163,
+        "bytes": 54031565,
+        "rows_per_s": 964681.7013224746
+      },
+      "median_s": 4.0585023999447,
+      "min_s": 3.4671878000954166,
+      "max_s": 4.17684589989949,
+      "stdev_s": 0.3801913462529967,
+      "median_peak_rss_mb": 495.76953125
+    },
+    {
+      "label": "scale 50",
+      "params": {
+        "scale": 50,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 500000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 1000000,
+        "n_products": 32320,
+        "n_orders": 5000000
+      },
+      "runs": 3,
+      "wall_s": [
+        30.789535099989735,
+        23.7369227000745,
+        20.783712000004016
+      ],
+      "peak_rss_mb": [
+        572.10546875,
+        574.78515625,
+        580.46875
+      ],
+      "extra": {
+        "rows": 19531906,
+        "bytes": 274484563,
+        "rows_per_s": 822849.121884645
+      },
+      "median_s": 23.7369227000745,
+      "min_s": 20.783712000004016,
+      "max_s": 30.789535099989735,
+      "stdev_s": 5.140967662004511,
+      "median_peak_rss_mb": 574.78515625
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "name": "memory_by_chunk_size",
+  "created_at": "2026-09-27T00:20:33+00:00",
+  "git_sha": "c0e144f",
+  "machine": {
+    "os": "Windows 11",
+    "python": "3.11.15",
+    "cpu": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "cores_physical": 6,
+    "cores_logical": 12,
+    "cpu_max_mhz": 2688,
+    "ram_gb": 23.8
+  },
+  "notes": "scale=10 (3.9M rows), Parquet + zstd.",
+  "cases": [
+    {
+      "label": "chunk 100,000",
+      "params": {
+        "scale": 10,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 100000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 200000,
+        "n_products": 14730,
+        "n_orders": 1000000
+      },
+      "runs": 3,
+      "wall_s": [
+        4.212544500012882,
+        4.131599200074561,
+        4.026887199957855
+      ],
+      "peak_rss_mb": [
+        251.35546875,
+        250.140625,
+        250.23046875
+      ],
+      "extra": {
+        "rows": 3916038,
+        "bytes": 68595083,
+        "rows_per_s": 947826.207326531
+      },
+      "median_s": 4.131599200074561,
+      "min_s": 4.026887199957855,
+      "max_s": 4.212544500012882,
+      "stdev_s": 0.09308184356993592,
+      "median_peak_rss_mb": 250.23046875
+    },
+    {
+      "label": "chunk 500,000",
+      "params": {
+        "scale": 10,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 500000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 200000,
+        "n_products": 14730,
+        "n_orders": 1000000
+      },
+      "runs": 3,
+      "wall_s": [
+        4.12025439995341,
+        4.160324699943885,
+        5.338524600025266
+      ],
+      "peak_rss_mb": [
+        504.49609375,
+        508.33984375,
+        487.7421875
+      ],
+      "extra": {
+        "rows": 3915163,
+        "bytes": 54031565,
+        "rows_per_s": 941071.4985906768
+      },
+      "median_s": 4.160324699943885,
+      "min_s": 4.12025439995341,
+      "max_s": 5.338524600025266,
+      "stdev_s": 0.6920913853285832,
+      "median_peak_rss_mb": 504.49609375
+    },
+    {
+      "label": "chunk 2,000,000",
+      "params": {
+        "scale": 10,
+        "seed": 42,
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "chunk_size": 2000000,
+        "dirty": {
+          "null_rate": 0.0,
+          "duplicate_rate": 0.0,
+          "outlier_rate": 0.0,
+          "orphan_rate": 0.0,
+          "schema_drift": false
+        },
+        "n_customers": 200000,
+        "n_products": 14730,
+        "n_orders": 1000000
+      },
+      "runs": 3,
+      "wall_s": [
+        3.7987991999834776,
+        4.082186199957505,
+        3.328403800027445
+      ],
+      "peak_rss_mb": [
+        647.20703125,
+        645.8359375,
+        645.8828125
+      ],
+      "extra": {
+        "rows": 3914719,
+        "bytes": 52356031,
+        "rows_per_s": 1030514.8532244153
+      },
+      "median_s": 3.7987991999834776,
+      "min_s": 3.328403800027445,
+      "max_s": 4.082186199957505,
+      "stdev_s": 0.38073786487520866,
+      "median_peak_rss_mb": 645.8828125
+    }
+  ]
+}
