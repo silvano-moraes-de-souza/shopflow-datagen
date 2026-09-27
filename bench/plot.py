@@ -13,6 +13,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.ticker import FuncFormatter  # noqa: E402
 
 SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
@@ -23,6 +24,7 @@ SERIES = "#2a78d6"
 UNITS = {
     "median_s": ("Median wall time", "s"),
     "median_peak_rss_mb": ("Median peak RSS", "MB"),
+    "rows_per_s": ("Rows per second", ""),
 }
 
 
@@ -78,6 +80,7 @@ def plot(path: Path, metric: str, out: Path | None = None, title: str | None = N
     ax.invert_yaxis()
     ax.set_xlim(0, span * 1.25)
     ax.set_xlabel(f"{axis_name} ({unit})" if unit else axis_name, color=INK_MUTED, fontsize=9)
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:,.0f}"))
     ax.tick_params(axis="x", colors=INK_MUTED, labelsize=8)
     ax.tick_params(axis="y", length=0)
     ax.grid(axis="x", color=GRID, linewidth=0.8, zorder=0)

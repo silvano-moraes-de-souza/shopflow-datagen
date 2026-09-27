@@ -109,10 +109,18 @@ def measure(
     return CaseResult(label, params or {}, runs, wall, rss, extra)
 
 
+def _os_name() -> str:
+    system, release = platform.system(), platform.release()
+    # platform.release() reports "10" on Windows 11; the build number tells them apart.
+    if system == "Windows" and release == "10" and int(platform.version().split(".")[-1]) >= 22000:
+        release = "11"
+    return f"{system} {release}"
+
+
 def machine_info() -> dict[str, Any]:
     freq = psutil.cpu_freq()
     return {
-        "os": f"{platform.system()} {platform.release()}",
+        "os": _os_name(),
         "python": platform.python_version(),
         "cpu": platform.processor() or platform.machine(),
         "cores_physical": psutil.cpu_count(logical=False),
