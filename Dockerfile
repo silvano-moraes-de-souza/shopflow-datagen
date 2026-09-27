@@ -21,4 +21,5 @@ USER app
 
 ENV PATH="/app/.venv/bin:$PATH"
 
-CMD ["python", "-c", "import shopflow_datagen; print(shopflow_datagen.__version__)"]
+ENTRYPOINT ["shopflow-datagen"]
+CMD ["--scale", "0.1", "--out", "/app/data/sf01"]
