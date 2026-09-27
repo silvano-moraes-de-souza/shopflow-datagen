@@ -6,7 +6,13 @@ readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Silvano Moraes de Souza" }]
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "numpy>=2.0",
+    "pyarrow>=16.0",
+]
+
+[project.scripts]
+shopflow-datagen = "shopflow_datagen.cli:main"
 
 [dependency-groups]
 dev = [
