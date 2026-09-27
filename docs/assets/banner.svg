@@ -3,7 +3,7 @@
 <rect x="64" y="64" width="6" height="192" rx="3" fill="#3987e5"/>
 <text x="96" y="92" fill="#3987e5" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" font-size="18" letter-spacing="2">DAY 00 / 30 · DATA &amp; SOFTWARE ENGINEERING</text>
 <text x="96" y="158" fill="#f5f5f3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="52" font-weight="700">ShopFlow Datagen</text>
-<text x="96" y="202" fill="#a3a29c" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22">Deterministic synthetic e-commerce data, from 10k to 100M rows</text>
+<text x="96" y="202" fill="#a3a29c" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22">Deterministic synthetic e-commerce data with a ground-truth dirty mode</text>
 <rect x="96" y="226" width="78" height="32" rx="16" fill="#1d2027"/>
 <text x="135.0" y="247" fill="#f5f5f3" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" font-size="14" text-anchor="middle">Python</text>
 <rect x="184" y="226" width="69" height="32" rx="16" fill="#1d2027"/>

@@ -1,7 +1,7 @@
 [project]
 name = "shopflow-datagen"
 version = "0.1.0"
-description = "Deterministic synthetic e-commerce data, from 10k to 100M rows"
+description = "Deterministic synthetic e-commerce data with a ground-truth dirty mode"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Silvano Moraes de Souza" }]
