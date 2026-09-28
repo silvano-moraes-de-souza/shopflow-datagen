@@ -40,6 +40,10 @@ def _epoch_day(d) -> int:
     return int(np.datetime64(d, "D").astype(np.int64))
 
 
+def _days(n) -> np.timedelta64:
+    return np.timedelta64(int(n), "D")
+
+
 def day_weights(cfg: GenConfig) -> tuple[np.ndarray, np.ndarray]:
     """Return (epoch days, relative demand) for every day in [start, end].
 
@@ -57,13 +61,13 @@ def day_weights(cfg: GenConfig) -> tuple[np.ndarray, np.ndarray]:
     for year in years:
         nov1 = np.datetime64(f"{year}-11-01")
         # 4th Thursday of November, then Friday.
-        first_thu = nov1 + (3 - (nov1.astype(np.int64) + 3) % 7) % 7
-        black_friday = first_thu + 21 + 1
+        first_thu = nov1 + _days((3 - (nov1.astype(np.int64) + 3) % 7) % 7)
+        black_friday = first_thu + _days(22)
         boosts = {
             black_friday: 3.5,
-            black_friday + 1: 1.8,
-            black_friday + 2: 1.6,
-            black_friday + 3: 2.2,  # Cyber Monday
+            black_friday + _days(1): 1.8,
+            black_friday + _days(2): 1.6,
+            black_friday + _days(3): 2.2,  # Cyber Monday
         }
         for day, factor in boosts.items():
             w[dates == day] *= factor
@@ -72,9 +76,9 @@ def day_weights(cfg: GenConfig) -> tuple[np.ndarray, np.ndarray]:
         )
         w[december] *= 1.3
         may1 = np.datetime64(f"{year}-05-01")
-        first_sun = may1 + (6 - (may1.astype(np.int64) + 3) % 7) % 7
-        mothers_day = first_sun + 7
-        week_before = (dates >= mothers_day - 7) & (dates < mothers_day)
+        first_sun = may1 + _days((6 - (may1.astype(np.int64) + 3) % 7) % 7)
+        mothers_day = first_sun + _days(7)
+        week_before = (dates >= mothers_day - _days(7)) & (dates < mothers_day)
         w[week_before] *= 1.4
     return days, w
 
