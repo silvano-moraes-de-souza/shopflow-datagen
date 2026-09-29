@@ -178,3 +178,15 @@ def test_growth_follows_trend_not_signup_timing():
     # trend (1.0 -> 1.6) plus the growing customer base should stay well under 2x.
     ratio = counts["2025-03"] / counts["2024-03"]
     assert 1.1 < ratio < 2.0
+
+
+def test_null_counts_describe_the_final_files(dirty):
+    parts, counts = dirty
+    in_channel = sum(
+        p["channel"].null_count for p in parts["orders"] if "channel" in p.column_names
+    )
+    in_drifted = sum(
+        p["sales_channel"].null_count for p in parts["orders"] if "sales_channel" in p.column_names
+    )
+    assert counts["orders.channel.null"] == in_channel > 0
+    assert counts.get("orders.sales_channel.null", 0) == in_drifted

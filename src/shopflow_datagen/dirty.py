@@ -108,8 +108,7 @@ class Injector:
     ) -> tuple[list[pa.Table], pa.Table]:
         """Return the orders as one or more parts (the drifted tail is its own part)."""
         rng = self._rng(1, chunk)
-        orders, k = null_out(orders, "channel", self.cfg.null_rate, rng)
-        self.counts["orders.channel.null"] += k
+        orders, _ = null_out(orders, "channel", self.cfg.null_rate, rng)
         orders, k = duplicate_rows(orders, self.cfg.duplicate_rate, rng)
         self.counts["orders.duplicate_rows"] += k
         items, k = price_outliers(items, self.cfg.outlier_rate, rng)
@@ -121,5 +120,13 @@ class Injector:
             cut = int(orders.num_rows * 0.8)
             drifted = drift_orders_schema(orders.slice(cut), rng)
             self.counts["orders.schema_drift_rows"] += drifted.num_rows
-            return [orders.slice(0, cut), drifted], items
-        return [orders], items
+            parts = [orders.slice(0, cut), drifted]
+        else:
+            parts = [orders]
+        # Null channels are counted in the final parts: duplicated rows carry
+        # their nulls, and in drifted rows the column is called sales_channel.
+        for part in parts:
+            for col in ("channel", "sales_channel"):
+                if col in part.column_names and part[col].null_count:
+                    self.counts[f"orders.{col}.null"] += part[col].null_count
+        return parts, items

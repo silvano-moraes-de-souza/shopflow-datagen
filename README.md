@@ -135,14 +135,17 @@ products            5,000 rows    1 files
 orders            100,505 rows    2 files
 order_items       169,351 rows    1 files
 payments          100,000 rows    1 files
-total             394,856 rows  in 1.03s
+total             394,856 rows  in 0.47s
   injected customers.email.null: 211
-  injected orders.channel.null: 975
   injected orders.duplicate_rows: 505
   injected order_items.price_outlier: 160
   injected order_items.orphan_product_id: 175
   injected orders.schema_drift_rows: 20,101
+  injected orders.channel.null: 788
+  injected orders.sales_channel.null: 189
 ```
+
+Null counts describe the files as written: duplicated rows carry their nulls, and in the drifted file the column is called `sales_channel`. An earlier version counted nulls before duplication and renaming (975), which [data-quality-engine](https://github.com/silvano-moraes-de-souza/data-quality-engine) caught when it found 788 in `channel`.
 
 ## Results
 
